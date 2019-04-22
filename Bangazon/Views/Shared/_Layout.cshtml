@@ -43,6 +43,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @*condition that toggles view depending on whether the user is signed in*@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">

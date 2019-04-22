@@ -10,6 +10,8 @@ using Bangazon.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
+//Authors: Brittany Ramos-Janeway
+
 namespace Bangazon.Controllers
 {
     [Authorize]
@@ -54,7 +56,7 @@ namespace Bangazon.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
+        // When a user chooses to add a product to sell this method directs the user to the correct form view
         public IActionResult Create()
         {
             ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label");
@@ -62,23 +64,25 @@ namespace Bangazon.Controllers
             return View();
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // When a user fills in all required fields they are then redirected to the details view of the newly created product
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,DateCreated,Description,Title,Price,Quantity,UserId,City,ImagePath,ProductTypeId")] Product product)
         {
+            //the User and UserId fields must be disregarded in order to determine if the model state is valid
             ModelState.Remove("User");
             ModelState.Remove("UserId");
 
+            //the user is instead obtained by the current authorized user
             var user = await GetCurrentUserAsync();
 
             if (ModelState.IsValid)
             {
+                //the user id is declaired using the asyc method above and established once model state is determined
                 product.UserId = user.Id;
                 _context.Add(product);
                 await _context.SaveChangesAsync();
+                //the routing occurs here instead of in the view because the product id must be created before the redirect occurs
                 return RedirectToAction("Details", new { id = product.ProductId});
             }
             ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label", product.ProductTypeId);
