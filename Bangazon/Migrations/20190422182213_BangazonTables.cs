@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bangazon.Migrations
 {
-    public partial class SeedingData : Migration
+    public partial class BangazonTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -281,7 +281,7 @@ namespace Bangazon.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "StreetAddress", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dff99479-4826-4833-8fff-2ac301fddde7", 0, "94da1bd2-868b-437b-a05a-66dc31fcf5eb", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEM5ksKUGfmplYFVEMpFm4VcHaVVf9BGH8ew8PXPc5StwoGTVETi5mhioURjgFZBJug==", null, false, "846bb251-8299-4d9f-8c4e-22126d6f9e47", "123 Infinity Way", false, "admin@admin.com" });
+                values: new object[] { "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a", 0, "9a9e8133-4f69-4efb-857b-6fe98ddb1f0a", "admin@admin.com", true, "admin", "admin", false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAECZW7LsNq1anz/F7iAqdr6G1AA3i7RrgJZpbapp7A5eVaQWhRUPR+Z/IU8vor7OZTQ==", null, false, "f09c701e-60f3-42d6-bc68-37bb2f14ea72", "123 Infinity Way", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "ProductType",
@@ -296,37 +296,137 @@ namespace Bangazon.Migrations
             migrationBuilder.InsertData(
                 table: "Order",
                 columns: new[] { "OrderId", "DateCompleted", "PaymentTypeId", "UserId" },
-                values: new object[] { 1, null, null, "dff99479-4826-4833-8fff-2ac301fddde7" });
+                values: new object[] { 1, null, null, "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
 
             migrationBuilder.InsertData(
                 table: "Order",
                 columns: new[] { "OrderId", "DateCompleted", "PaymentTypeId", "UserId" },
-                values: new object[] { 2, null, null, "dff99479-4826-4833-8fff-2ac301fddde7" });
+                values: new object[] { 2, null, null, "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
 
             migrationBuilder.InsertData(
                 table: "PaymentType",
                 columns: new[] { "PaymentTypeId", "AccountNumber", "Description", "UserId" },
-                values: new object[] { 1, "86753095551212", "American Express", "dff99479-4826-4833-8fff-2ac301fddde7" });
+                values: new object[] { 1, "86753095551212", "American Express", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
 
             migrationBuilder.InsertData(
                 table: "PaymentType",
                 columns: new[] { "PaymentTypeId", "AccountNumber", "Description", "UserId" },
-                values: new object[] { 2, "4102948572991", "Discover", "dff99479-4826-4833-8fff-2ac301fddde7" });
+                values: new object[] { 2, "4102948572991", "Discover", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
 
             migrationBuilder.InsertData(
                 table: "Product",
                 columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
-                values: new object[] { 1, null, "It flies high", null, 2.9900000000000002, 1, 100, "Kite", "dff99479-4826-4833-8fff-2ac301fddde7" });
+                values: new object[] { 17, null, "To make friends", null, 9832479820.0, 2, 85, "Dog", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
 
             migrationBuilder.InsertData(
                 table: "Product",
                 columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
-                values: new object[] { 3, null, "It rolls flat", null, 50.0, 1, 0, "Roller Blade", "dff99479-4826-4833-8fff-2ac301fddde7" });
+                values: new object[] { 16, null, "Make you super cool", null, 50000000.0, 2, 1, "Air Conditioner", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
 
             migrationBuilder.InsertData(
                 table: "Product",
                 columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
-                values: new object[] { 2, null, "It rolls fast", null, 29.989999999999998, 2, 5, "Wheelbarrow", "dff99479-4826-4833-8fff-2ac301fddde7" });
+                values: new object[] { 13, null, "To add drama to any room", null, 25.0, 2, 2000, "Fog machine", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 7, null, "Cooks my turkey", null, 75.0, 2, 0, "Stove", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 23, null, "Cleans my clothes", null, 100.0, 2, 15, "Washer", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 4, null, "Cools my jello", null, 500.0, 2, 10, "Refrigerator", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 2, null, "It rolls fast", null, 29.989999999999998, 2, 5, "Wheelbarrow", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 22, null, "Your mom", null, 900.0, 1, 0, "Back Brace", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 21, null, "Makes your dad fun again", null, 10.0, 1, 2, "Football", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 19, null, "Causes good feels", null, 8.0, 1, 2, "Massager", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 14, null, "To sail on water", null, 500.0, 1, 10, "Boat", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 18, null, "Gets shit done", null, 560.0, 2, 18, "Steam Roller", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 12, null, "Beauty for the home", null, 0.5, 1, 3, "Bubbles", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 11, null, "Make decorative blocks of steel", null, 5000.0, 1, 150, "Trash Compactor", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 10, null, "To catch fish", null, 50.0, 1, 100, "Fishing Rod", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 9, null, "Takes your cat for a spin", null, 120.0, 1, 5, "Dryer", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 8, null, "To hit baseballs", null, 40.0, 1, 20, "Baseball Bat", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 6, null, "Ninja stuff", null, 5.5, 1, 0, "Nunchucks", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 5, null, "Baseball", null, 10.0, 1, 0, "Baseball", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 3, null, "It rolls flat", null, 50.0, 1, 0, "Roller Blade", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 1, null, "It flies high", null, 2.9900000000000002, 1, 100, "Kite", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 15, null, "For all your sporting needs", null, 99.0, 1, 0, "Sports bag", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
+
+            migrationBuilder.InsertData(
+                table: "Product",
+                columns: new[] { "ProductId", "City", "Description", "ImagePath", "Price", "ProductTypeId", "Quantity", "Title", "UserId" },
+                values: new object[] { 20, null, "Blows, literally", null, 50.0, 2, 0, "Hair dryer", "1c4dd4b8-f96c-4aa9-921f-10f84c84e98a" });
 
             migrationBuilder.InsertData(
                 table: "OrderProduct",

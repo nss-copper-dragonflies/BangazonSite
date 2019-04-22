@@ -139,7 +139,7 @@ namespace Bangazon.Data {
                 },
                 new Product()
                 {
-                    ProductId = 5,
+                    ProductId = 23,
                     ProductTypeId = 2,
                     UserId = user.Id,
                     Description = "Cleans my clothes",
