@@ -97,20 +97,239 @@ namespace Bangazon.Data {
                         Quantity = 100,
                         Price = 2.99
                 },
-                new Product () {
+                new Product()
+                {
+                    ProductId = 3,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "It rolls flat",
+                    Title = "Roller Blade",
+                    Quantity = 0,
+                    Price = 50.00
+                },
+                new Product ()
+                {
                     ProductId = 2,
-                        ProductTypeId = 2,
-                        UserId = user.Id,
-                        Description = "It rolls fast",
-                        Title = "Wheelbarrow",
-                        Quantity = 5,
-                        Price = 29.99
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "It rolls fast",
+                    Title = "Wheelbarrow",
+                    Quantity = 5,
+                    Price = 29.99
+                },
+                new Product()
+                {
+                    ProductId = 4,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "Cools my jello",
+                    Title = "Refrigerator",
+                    Quantity = 10,
+                    Price = 500.00
+                },
+                new Product()
+                {
+                    ProductId = 5,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Baseball",
+                    Title = "Baseball",
+                    Quantity = 0,
+                    Price = 10.00
+                },
+                new Product()
+                {
+                    ProductId = 5,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "Cleans my clothes",
+                    Title = "Washer",
+                    Quantity = 15,
+                    Price = 100.00
+                },
+                new Product()
+                {
+                    ProductId = 6,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Ninja stuff",
+                    Title = "Nunchucks",
+                    Quantity = 0,
+                    Price = 5.50
+                },
+                new Product()
+                {
+                    ProductId = 7,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "Cooks my turkey",
+                    Title = "Stove",
+                    Quantity = 0,
+                    Price = 75.00
+                },
+                new Product()
+                {
+                    ProductId = 8,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "To hit baseballs",
+                    Title = "Baseball Bat",
+                    Quantity = 20,
+                    Price = 40.00
+                },
+                new Product()
+                {
+                    ProductId = 9,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Takes your cat for a spin",
+                    Title = "Dryer",
+                    Quantity = 5,
+                    Price = 120.00
+                },
+                new Product()
+                {
+                    ProductId = 10,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "To catch fish",
+                    Title = "Fishing Rod",
+                    Quantity = 100,
+                    Price = 50.00
+                },
+                new Product()
+                {
+                    ProductId = 11,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Make decorative blocks of steel",
+                    Title = "Trash Compactor",
+                    Quantity = 150,
+                    Price = 5000.00
+                },
+                new Product()
+                {
+                    ProductId = 12,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Beauty for the home",
+                    Title = "Bubbles",
+                    Quantity = 3,
+                    Price = 0.50
+                },
+                new Product()
+                {
+                    ProductId = 13,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "To add drama to any room",
+                    Title = "Fog machine",
+                    Quantity = 2000,
+                    Price = 25.00
+                },
+                new Product()
+                {
+                    ProductId = 14,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "To sail on water",
+                    Title = "Boat",
+                    Quantity = 10,
+                    Price = 500.00
+                },
+                new Product()
+                {
+                    ProductId = 15,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "For all your sporting needs",
+                    Title = "Sports bag",
+                    Quantity = 0,
+                    Price = 99.00
+                },
+                new Product()
+                {
+                    ProductId = 16,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "Make you super cool",
+                    Title = "Air Conditioner",
+                    Quantity = 1,
+                    Price = 50000000.00
+                },
+                new Product()
+                {
+                    ProductId = 17,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "To make friends",
+                    Title = "Dog",
+                    Quantity = 85,
+                    Price = 9832479820.00
+                },
+                new Product()
+                {
+                    ProductId = 18,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "Gets shit done",
+                    Title = "Steam Roller",
+                    Quantity = 18,
+                    Price = 560.00
+                },
+                new Product()
+                {
+                    ProductId = 19,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Causes good feels",
+                    Title = "Massager",
+                    Quantity = 2,
+                    Price = 8.00
+                },
+                new Product()
+                {
+                    ProductId = 20,
+                    ProductTypeId = 2,
+                    UserId = user.Id,
+                    Description = "Blows, literally",
+                    Title = "Hair dryer",
+                    Quantity = 0,
+                    Price = 50.00
+                },
+                new Product()
+                {
+                    ProductId = 21,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Makes your dad fun again",
+                    Title = "Football",
+                    Quantity = 2,
+                    Price = 10.00
+                },
+                new Product()
+                {
+                    ProductId = 22,
+                    ProductTypeId = 1,
+                    UserId = user.Id,
+                    Description = "Your mom",
+                    Title = "Back Brace",
+                    Quantity = 0,
+                    Price = 900.00
                 }
             );
 
             modelBuilder.Entity<Order> ().HasData (
                 new Order () {
                     OrderId = 1,
+                    UserId = user.Id,
+                    PaymentTypeId = null
+                }
+            );
+            modelBuilder.Entity<Order>().HasData(
+                new Order()
+                {
+                    OrderId = 2,
                     UserId = user.Id,
                     PaymentTypeId = null
                 }
@@ -128,6 +347,15 @@ namespace Bangazon.Data {
                 new OrderProduct () {
                     OrderProductId = 2,
                     OrderId = 1,
+                    ProductId = 2
+                }
+            );
+
+            modelBuilder.Entity<OrderProduct>().HasData(
+                new OrderProduct()
+                {
+                    OrderProductId = 3,
+                    OrderId =2,
                     ProductId = 2
                 }
             );
