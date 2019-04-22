@@ -29,6 +29,7 @@ namespace Bangazon.Models
 
     [Required]
     public int Quantity { get; set; }
+    // HN: For the product details view, the product quantity should show products remaining.
 
     [Required]
     public string UserId {get; set;}
