@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Bangazon.Data;
 using Bangazon.Models;
+using Bangazon.Models.ProductViewModels;
+
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
-//Authors: Brittany Ramos-Janeway
+//Authors: Brittany Ramos-Janeway, Asia Carter
 
 namespace Bangazon.Controllers
 {
@@ -28,6 +31,7 @@ namespace Bangazon.Controllers
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
 
         // GET: Products
         public async Task<IActionResult> Index()
@@ -56,7 +60,9 @@ namespace Bangazon.Controllers
             return View(product);
         }
 
+
         // When a user chooses to add a product to sell this method directs the user to the correct form view
+
         public IActionResult Create()
         {
             ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label");
@@ -69,6 +75,7 @@ namespace Bangazon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,DateCreated,Description,Title,Price,Quantity,UserId,City,ImagePath,ProductTypeId")] Product product)
         {
+
             //the User and UserId fields must be disregarded in order to determine if the model state is valid
             ModelState.Remove("User");
             ModelState.Remove("UserId");
@@ -84,6 +91,7 @@ namespace Bangazon.Controllers
                 await _context.SaveChangesAsync();
                 //the routing occurs here instead of in the view because the product id must be created before the redirect occurs
                 return RedirectToAction("Details", new { id = product.ProductId});
+
             }
             ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label", product.ProductTypeId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", product.UserId);
@@ -180,5 +188,7 @@ namespace Bangazon.Controllers
         {
             return _context.Product.Any(e => e.ProductId == id);
         }
+       
     }
+
 }
