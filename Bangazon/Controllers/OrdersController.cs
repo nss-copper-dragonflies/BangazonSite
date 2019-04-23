@@ -35,8 +35,14 @@ namespace Bangazon.Controllers
             var user = await GetCurrentUserAsync();
             var applicationDbContext = _context.Order
                 .Include(o => o.PaymentType)
-                .Include(o => o.User);
+                .Include(o => o.User)
+                .Where(o => o.DateCompleted == null);
             return View(await applicationDbContext.ToListAsync());
+        }
+
+        public IActionResult Confirmation()
+        {
+            return View();
         }
 
         // GET: Orders/Details/5
@@ -145,7 +151,7 @@ namespace Bangazon.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Confirmation));
             }
             ViewData["PaymentTypeId"] = new SelectList(_context.PaymentType, "PaymentTypeId", "AccountNumber", order.PaymentTypeId);
             ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", order.UserId);
