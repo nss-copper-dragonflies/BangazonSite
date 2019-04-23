@@ -52,3 +52,7 @@ Once your appsettings are updated and you've entered in some seed data, you shou
 
 ### Products
 If the user would like to sell a product they are presented with the option to "Sell a Product" in the menu if they are logged in. All fields must be input with valid information in order for the user to create a new product. When the product has been created the user is redirected to a page that displays the details of the product that was just created.
+
+### Product Types
+Any visitor to the site is able to view a list of Product Categories via the Product Categories link. When the visitor clicks on the Categories link, they are directed to a view of all product categories, the number of products within each category and the first 3 products within that category.
+
