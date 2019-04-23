@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Bangazon.Data;
 using Bangazon.Models;
 using Bangazon.Models.ProductViewModels;
-
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
