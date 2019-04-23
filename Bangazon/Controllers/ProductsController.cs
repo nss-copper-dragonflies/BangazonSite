@@ -38,7 +38,9 @@ namespace Bangazon.Controllers
             var product = await _context.Product
                 .Include(p => p.ProductType)
                 .Include(p => p.User)
+                //NOTE HN: The ".Include" methods tell the context to load the Product.ProductType and Product.User properties.
                 .FirstOrDefaultAsync(m => m.ProductId == id);
+            //NOTE HN: The ".FirstOrDefaultAsync" method retrieves a single product that matches the Id.
             if (product == null)
             {
                 return NotFound();
@@ -46,6 +48,10 @@ namespace Bangazon.Controllers
 
             return View(product);
         }
+
+        // HN: This is the end of the details view; To update the quantity of items shown, a product needs to be added to a valid order via the "add to order" button. This also involves a valid user and a "shopping cart" (which represents the open order).
+
+
 
 //---------------------------------------------------------------------------------------------------------------------
 
