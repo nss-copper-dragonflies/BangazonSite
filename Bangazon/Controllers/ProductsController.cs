@@ -9,6 +9,7 @@ using Bangazon.Data;
 using Bangazon.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Bangazon.Models.ProductViewModels;
 
 //Authors: Brittany Ramos-Janeway
 
@@ -59,9 +60,31 @@ namespace Bangazon.Controllers
         // When a user chooses to add a product to sell this method directs the user to the correct form view
         public IActionResult Create()
         {
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label");
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
-            return View();
+            var ProductTypeData = _context.ProductType;
+
+            List<SelectListItem> ProductTypesList = new List<SelectListItem>();
+
+            ProductTypesList.Insert(0, new SelectListItem
+            {
+                Text = "Select",
+                Value = ""
+            });
+
+            foreach (var pt in ProductTypeData)
+            {
+                SelectListItem li = new SelectListItem
+                {
+                    Value = pt.ProductTypeId.ToString(),
+                    Text = pt.Label
+                };
+                ProductTypesList.Add(li);
+            };
+
+
+            ProductCreateViewModel PCVM = new ProductCreateViewModel();
+
+            PCVM.ProductTypes = ProductTypesList;
+            return View(PCVM);
         }
 
         // When a user fills in all required fields they are then redirected to the details view of the newly created product
