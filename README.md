@@ -52,3 +52,7 @@ Once your appsettings are updated and you've entered in some seed data, you shou
 
 ### Products
 If the user would like to sell a product they are presented with the option to "Sell a Product" in the menu if they are logged in. All fields must be input with valid information in order for the user to create a new product. When the product has been created the user is redirected to a page that displays the details of the product that was just created.
+
+If a user is viewing the list of Products, they will be able to see the product details from this view. If they wish to view the details of a specific product, they may click the "Details" link for that product and they will be presented with a view containing that product only and the details for it. 
+
+If a user wishes to add a product to their order from the product list or product details views, they may choose the "Add to Order" allowance. 

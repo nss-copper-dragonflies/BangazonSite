@@ -10,7 +10,7 @@ using Bangazon.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
-//Authors: Brittany Ramos-Janeway
+//Authors: Brittany Ramos-Janeway and Hannah Neal
 
 namespace Bangazon.Controllers
 {
