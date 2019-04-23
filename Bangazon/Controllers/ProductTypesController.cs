@@ -49,22 +49,23 @@ namespace Bangazon.Controllers
         }
 
         // GET: ProductTypes/Details/5
+        // Method includes products column and matches where the product's ProductTypeId matches the ProductTypeId passed in
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var productType = await _context.ProductType
+            var ProductType = await _context.ProductType
+                .Include(p => p.Products)
                 .FirstOrDefaultAsync(m => m.ProductTypeId == id);
-            if (productType == null)
+            if (ProductType == null)
             {
                 return NotFound();
             }
-
-            return View(productType);
+            return View(ProductType);
         }
+
 
         // GET: ProductTypes/Create
         public IActionResult Create()
