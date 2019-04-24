@@ -12,6 +12,7 @@ using Bangazon.Models.ProductViewModels;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Bangazon.Models.ProductViewModels;
 
 
 //Authors: Brittany Ramos-Janeway, Hannah Neal, Asia Carter
@@ -69,47 +70,89 @@ namespace Bangazon.Controllers
 
 //---------------------------------------------------------------------------------------------------------------------
 
-        // GET: Products/Create
-=======
-
-        // When a user chooses to add a product to sell this method directs the user to the correct form view
+        // BR: When a user chooses to add a product to sell this method directs the user to the correct form view
 
         public IActionResult Create()
         {
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label");
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
-            return View();
+            //BR: get product type data from the database
+            var ProductTypeData = _context.ProductType;
+
+            List<SelectListItem> ProductTypesList = new List<SelectListItem>();
+
+            //BR: include the select option in the product type list
+            ProductTypesList.Insert(0, new SelectListItem
+            {
+                Text = "Select",
+                Value = ""
+            });
+
+            //BR: for each statement that takes each product from the database and converts it to a select list item and adds them to the product types list
+            foreach (var pt in ProductTypeData)
+            {
+                SelectListItem li = new SelectListItem
+                {
+                    Value = pt.ProductTypeId.ToString(),
+                    Text = pt.Label
+                };
+                ProductTypesList.Add(li);
+            };
+
+
+            ProductCreateViewModel PCVM = new ProductCreateViewModel();
+
+            PCVM.ProductTypes = ProductTypesList;
+            return View(PCVM);
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // When a user fills in all required fields they are then redirected to the details view of the newly created product
+        // BR: When a user fills in all required fields they are then redirected to the details view of the newly created product
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,DateCreated,Description,Title,Price,Quantity,UserId,City,ImagePath,ProductTypeId")] Product product)
+        public async Task<IActionResult> Create(ProductCreateViewModel viewModel)
         {
 
-            //the User and UserId fields must be disregarded in order to determine if the model state is valid
-            ModelState.Remove("User");
-            ModelState.Remove("UserId");
+            //BR: the User and UserId fields must be disregarded in order to determine if the model state is valid
+            ModelState.Remove("Product.User");
+            ModelState.Remove("Product.UserId");
 
-            //the user is instead obtained by the current authorized user
+            //BR: the user is instead obtained by the current authorized user
             var user = await GetCurrentUserAsync();
 
             if (ModelState.IsValid)
             {
-                //the user id is declaired using the asyc method above and established once model state is determined
-                product.UserId = user.Id;
-                _context.Add(product);
+                //BR: the user id is declaired using the asyc method above and established once model state is determined
+                viewModel.Product.User = user;
+                _context.Add(viewModel.Product);
                 await _context.SaveChangesAsync();
-                //the routing occurs here instead of in the view because the product id must be created before the redirect occurs
-                return RedirectToAction("Details", new { id = product.ProductId});
+                //BR: the routing occurs here instead of in the view because the product id must be created before the redirect occurs
+                return RedirectToAction("Details", new { id = viewModel.Product.ProductId});
 
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductType, "ProductTypeId", "Label", product.ProductTypeId);
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", product.UserId);
-            return View(product);
+
+            //BR: get product type data from the database
+            var ProductTypeData = _context.ProductType;
+
+            List<SelectListItem> ProductTypesList = new List<SelectListItem>();
+
+            //BR: include the select option in the product type list
+            ProductTypesList.Insert(0, new SelectListItem
+            {
+                Text = "Select",
+                Value = ""
+            });
+
+            //BR: for each statement that takes each product from the database and converts it to a select list item and adds them to the product types list
+            foreach (var pt in ProductTypeData)
+            {
+                SelectListItem li = new SelectListItem
+                {
+                    Value = pt.ProductTypeId.ToString(),
+                    Text = pt.Label
+                };
+                ProductTypesList.Add(li);
+            };
+
+            viewModel.ProductTypes = ProductTypesList;
+            return View(viewModel);
         }
 
         // GET: Products/Edit/5
