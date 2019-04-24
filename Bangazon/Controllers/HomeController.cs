@@ -31,10 +31,12 @@ namespace Bangazon.Controllers
                 .ToList();
 
             IndexViewModel viewModel = new IndexViewModel();
+            // HN: The IndexViewModel was created with a List<Product> property.
 
             viewModel.AllProducts = products;
 
             return View(viewModel);
+            //HN: The Index.cshtml view refers to this Index() method to show the 20 most recently-added products to the home/welcome page.
         }
 
 //-----------------------------------------------------------------------------------------------
