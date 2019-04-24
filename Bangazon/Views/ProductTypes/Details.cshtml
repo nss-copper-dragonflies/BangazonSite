@@ -1,24 +1,22 @@
-﻿@model Bangazon.Models.ProductType
+﻿@*Author: Asia Carter*@
+@model Bangazon.Models.ProductType
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>ProductType</h4>
+    <h4> @Html.DisplayFor(model => model.Label)</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Label)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Label)
-        </dd>
+    <dl class="dl-horizontal">
+        @foreach (Product product in Model.Products)
+        {        
+            <dd>                  
+                <a asp-controller="Products" asp-route-id="@product.ProductId" asp-action="Details">@product.Title</a>
+                <p>Quantity: @product.Quantity</p>
+                <p>Price: @product.Price</p>
+            </dd>
+        }
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ProductTypeId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
