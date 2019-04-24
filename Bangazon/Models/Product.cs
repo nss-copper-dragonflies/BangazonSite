@@ -17,14 +17,20 @@ namespace Bangazon.Models
 
     [Required]
     [StringLength(255)]
+    //special characters are not allowed
+    [RegularExpression(@"^[a-zA-Z0-9'' ']+$", ErrorMessage = "Special character should not be entered")]
     public string Description { get; set; }
 
     [Required]
     [StringLength(55, ErrorMessage="Please shorten the product title to 55 characters")]
+    //special characters are not allowed
+    [RegularExpression(@"^[a-zA-Z0-9'' ']+$", ErrorMessage = "Special character should not be entered")]
     public string Title { get; set; }
 
     [Required]
     [DisplayFormat(DataFormatString = "{0:C}")]
+    //Price cannot exceed $10,000
+    [Range(0.00, 100000.01, ErrorMessage ="Price must be $10,000 or less")]
     public double Price { get; set; }
 
     [Required]
@@ -44,7 +50,7 @@ namespace Bangazon.Models
     [Required]
     [Display(Name="Product Category")]
     public int ProductTypeId { get; set; }
-
+    
     public ProductType ProductType { get; set; }
 
     public virtual ICollection<OrderProduct> OrderProducts { get; set; }
