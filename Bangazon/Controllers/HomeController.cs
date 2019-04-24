@@ -9,6 +9,8 @@ using Bangazon.Data;
 using Microsoft.EntityFrameworkCore;
 using Bangazon.Models.HomeIndexViewModel;
 
+//Authors: Hannah Neal
+
 namespace Bangazon.Controllers
 {
     public class HomeController : Controller
