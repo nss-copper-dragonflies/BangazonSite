@@ -29,7 +29,7 @@ namespace Bangazon.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            var applicationDbContext = _context.PaymentType.Include(p => p.User).Where(p => p.UserId == user.Id);
+            var applicationDbContext = _context.PaymentType.Include(p => p.User).Where(p=> p.UserId == user.Id);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -54,9 +54,10 @@ namespace Bangazon.Controllers
 
         // GET: PaymentTypes/Create
         [Authorize]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id");
+            var user = await GetCurrentUserAsync();
+            ViewData["UserId"] = user.Id;
             return View();
         }
 
@@ -67,13 +68,22 @@ namespace Bangazon.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PaymentTypeId,DateCreated,Description,AccountNumber,UserId")] PaymentType paymentType)
         {
+            //the User and UserId fields must be disregarded in order to determine if the model state is valid
+            ModelState.Remove("User");
+            ModelState.Remove("UserId");
+
+            //the user is instead obtained by the current authorized user
+            var user = await GetCurrentUserAsync();
+
             if (ModelState.IsValid)
             {
+                //the user id is declaired using the asyc method above and established once model state is determined
+                paymentType.UserId = user.Id;
                 _context.Add(paymentType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", paymentType.UserId);
+            }        
+         
             return View(paymentType);
         }
 
