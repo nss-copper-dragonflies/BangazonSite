@@ -12,14 +12,13 @@
 
 <div>
     <h3>Newest Products:</h3>
+    <h4>Latest Products: </h4>
     <table class="table">
-        <div>
-            <h4>Latest Products: </h4>
-            <ol>
+            @*<ol>*@
                 @foreach (var prod in Model.AllProducts)
                 {
                     <li><a asp-controller="Products" asp-action="Details" asp-route-id="@prod.ProductId">@prod.Title</a> - @prod.Description</li>
                 }
-            </ol>
+            @*</ol>*@
     </table>
 </div>
