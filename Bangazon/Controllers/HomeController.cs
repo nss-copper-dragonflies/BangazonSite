@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Bangazon.Models;
 using Bangazon.Data;
 using Microsoft.EntityFrameworkCore;
+using Bangazon.Models.ProductViewModels;
 
 namespace Bangazon.Controllers
 {
@@ -22,12 +23,24 @@ namespace Bangazon.Controllers
         }
 //-----------------------------------------------------------------------------------------------
 //NOTE HN: fleshed out the Index() to include 20 products:
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Product.Include(p => p.ProductType).Include(p => p.User);
-            return View(await applicationDbContext.ToListAsync());
+            List<Product> products = _context.Product
+                //.Include(p => p.ProductType)
+                //.Include(p => p.Title)
+                //.Include(p => p.DateCreated)
+                .OrderByDescending(p => p.DateCreated)
+                .Take(20)
+                .ToList();
+
+            ProductListViewModel viewModel = new ProductListViewModel();
+            //return View(await applicationDbContext.ToListAsync());
+
+            viewModel.Products = products;
+
+            return View(viewModel);
         }
-        //NOTE HN: End of Index()
+
 //-----------------------------------------------------------------------------------------------
 
         public IActionResult Privacy()
