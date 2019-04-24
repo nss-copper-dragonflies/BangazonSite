@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Bangazon.Data;
 using Bangazon.Models;
 using Bangazon.Models.ProductViewModels;
-
-
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Bangazon.Models.ProductViewModels;
@@ -70,7 +68,9 @@ namespace Bangazon.Controllers
 
 //---------------------------------------------------------------------------------------------------------------------
 
+
         // BR: When a user chooses to add a product to sell this method directs the user to the correct form view
+
 
         public IActionResult Create()
         {
