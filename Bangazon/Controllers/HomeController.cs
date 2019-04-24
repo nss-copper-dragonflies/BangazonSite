@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Bangazon.Models;
 using Bangazon.Data;
 using Microsoft.EntityFrameworkCore;
-using Bangazon.Models.ProductViewModels;
+using Bangazon.Models.HomeIndexViewModel;
 
 namespace Bangazon.Controllers
 {
@@ -26,17 +26,13 @@ namespace Bangazon.Controllers
         public IActionResult Index()
         {
             List<Product> products = _context.Product
-                //.Include(p => p.ProductType)
-                //.Include(p => p.Title)
-                //.Include(p => p.DateCreated)
                 .OrderByDescending(p => p.DateCreated)
                 .Take(20)
                 .ToList();
 
-            ProductListViewModel viewModel = new ProductListViewModel();
-            //return View(await applicationDbContext.ToListAsync());
+            IndexViewModel viewModel = new IndexViewModel();
 
-            viewModel.Products = products;
+            viewModel.AllProducts = products;
 
             return View(viewModel);
         }
