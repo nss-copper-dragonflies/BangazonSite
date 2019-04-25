@@ -84,6 +84,7 @@ namespace Bangazon.Controllers
 
 //---------------------------------------------------------------------------------------------------------------------
 
+        // GET: Products/Create
 
         // BR: When a user chooses to add a product to sell this method directs the user to the correct form view
 

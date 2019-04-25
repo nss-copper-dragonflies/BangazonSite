@@ -14,12 +14,17 @@ namespace Bangazon.Models
     [Required]
     [DataType(DataType.Date)]
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public DateTime DateCreated {get;set;}
+    public DateTime DateCreated  {get;set;}
+
+        public Order()
+        {
+            DateCreated = DateTime.Now;
+        }
 
     [DataType(DataType.Date)]
     public DateTime? DateCompleted {get;set;}
 
-    [Required]
+        [Required]
     public string UserId {get; set;}
 
     [Required]

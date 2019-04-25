@@ -1,0 +1,66 @@
+﻿@model Bangazon.Models.OrderViewModels.OrderDetailViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Order</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Order.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.User)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Order.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Order.User.FirstName)
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+    <th>
+        @Html.DisplayNameFor(model => model.LineItems.First().Product.Title)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.LineItems.First().Units)
+    </th>
+
+    <th>
+        @Html.DisplayNameFor(model => model.LineItems.First().Cost)
+    </th>
+    </thead>
+    <tbody>
+       
+        @foreach (var item in Model.LineItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Product.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Units)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Cost)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Order.OrderId">Complete Order</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+

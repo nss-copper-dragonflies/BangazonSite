@@ -63,7 +63,7 @@
 <div>
     @*---------------------------------------------------------------------------*@
     @*HN: The "Add to Order" button is connected to the quantity of products in the database; when it is clicked, the quantity of products available in this view decreases by 1. *@
-    <a asp-area="" asp-controller="Orders" asp-action="AddToCart" asp-route-id="@Model.ProductId" class="btn-success">Add to Order</a>
+    <a asp-area="" asp-controller="OrderProducts" asp-action="Create" asp-route-id="@Model.ProductId" class="btn-success">Add to Order</a>
 
     @*HN: Put the "Add Product to Order" button here.*@
     @*---------------------------------------------------------------------------*@
