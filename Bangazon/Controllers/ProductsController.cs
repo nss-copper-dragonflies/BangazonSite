@@ -41,6 +41,20 @@ namespace Bangazon.Controllers
                 .Include(p => p.User);
             return View(await applicationDbContext.ToListAsync());
         }
+
+
+        //BR: this get method accesses the products created by the current user
+        public async Task<IActionResult> GetMyProducts()
+        {
+            //BR: In order to access user specific information, the current user must be identified
+            var user = await GetCurrentUserAsync();
+
+            //BR: the information from the database is received for the current user
+            var applicationDbContext = _context.Product.Include(p => p.ProductType).Include(p => p.User).Where(p => p.User.Id == user.Id);
+            
+            return View(await applicationDbContext.ToListAsync());
+        }
+
 //---------------------------------------------------------------------------------------------------------------------
 
         // GET: Products/Details/5
