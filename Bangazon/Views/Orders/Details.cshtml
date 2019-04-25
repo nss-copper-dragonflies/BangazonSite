@@ -29,19 +29,19 @@
         </tr>
     </tbody>
     <thead>
-        <th>
-            @Html.DisplayNameFor(model => model.LineItems.First().Product.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LineItems.First().Units)
-        </th>
+    <th>
+        @Html.DisplayNameFor(model => model.LineItems.First().Product.Title)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.LineItems.First().Units)
+    </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.LineItems.First().Cost)
-        </th>
+    <th>
+        @Html.DisplayNameFor(model => model.LineItems.First().Cost)
+    </th>
     </thead>
     <tbody>
-        
+       
         @foreach (var item in Model.LineItems)
         {
             <tr>

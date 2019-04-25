@@ -99,6 +99,11 @@ namespace Bangazon.Controllers
             return View();
         }
 
+        public IActionResult NoOrders()
+        {
+            return View("NoOrders");
+        }
+
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -113,7 +118,12 @@ namespace Bangazon.Controllers
                 .ThenInclude(op => op.Product)
                 .FirstOrDefaultAsync(m => m.UserId == user.Id.ToString() && m.PaymentTypeId == null);
 
-            model.Order = order;
+            if (order == null)
+            {
+               return View("NoOrders");
+            }
+            
+                model.Order = order;
 
             model.LineItems = order
                 .OrderProducts
@@ -125,12 +135,12 @@ namespace Bangazon.Controllers
                     Cost = g.Key.Price * g.Select(l => l.ProductId).Count()
                 }).ToList();
 
-            if (order == null)
-            {
-                return NotFound();
-            }
+                if (model.LineItems == null)
+                {
+                    return NoOrders();
+                }
 
-            return View(model);
+                return View(model);       
         }
 
         // GET: Orders/Create
