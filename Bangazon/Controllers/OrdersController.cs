@@ -9,6 +9,7 @@ using Bangazon.Data;
 using Bangazon.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Bangazon.Models.OrderViewModels;
 
 namespace Bangazon.Controllers
 {
@@ -40,6 +41,59 @@ namespace Bangazon.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+
+        public async Task<IActionResult> AddToOrder()
+        {
+            var user = await GetCurrentUserAsync();
+            var applicationDbContext = _context.Order
+                .Include(o => o.PaymentType)
+                .Include(o => o.User)
+                .Where(o => o.DateCompleted == null && o.UserId == user.Id);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToOrder([Bind("OrderId,DateCreated,DateCompleted,UserId,PaymentTypeId,ProductId,OrderProducts")] int id, Order order)
+        {
+            ModelState.Remove("UserId");
+            ModelState.Remove("User");
+
+            Product productToAdd = await _context.Product.SingleOrDefaultAsync(p => p.ProductId == id);
+
+            // Get the current user
+            var user = await GetCurrentUserAsync();
+
+            // See if the user has an open order
+            var openOrder = await _context.Order.SingleOrDefaultAsync(o => o.User == user && o.PaymentTypeId == null);
+
+            // If no order, create one, else add to existing order
+            if (openOrder != null)
+            {
+
+                if (ModelState.IsValid)
+                {
+                    order.User = user;
+                    _context.Add(productToAdd);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else
+            {
+                order.User = user;
+                _context.Add(order);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(AddToOrder));
+            }
+
+
+
+            ViewData["PaymentTypeId"] = new SelectList(_context.PaymentType, "PaymentTypeId", "AccountNumber", order.PaymentTypeId);
+            ViewData["UserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", order.UserId);
+            return View(order);
+        }
+
         public IActionResult Confirmation()
         {
             return View();
@@ -48,21 +102,35 @@ namespace Bangazon.Controllers
         // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            
+            OrderDetailViewModel model = new OrderDetailViewModel();
+            var user = await GetCurrentUserAsync();
 
             var order = await _context.Order
                 .Include(o => o.PaymentType)
                 .Include(o => o.User)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
+                .Include(o => o.OrderProducts)
+                .ThenInclude(op => op.Product)
+                .FirstOrDefaultAsync(m => m.UserId == user.Id.ToString() && m.PaymentTypeId == null);
+
+            model.Order = order;
+
+            model.LineItems = order
+                .OrderProducts
+                .GroupBy(op => op.Product)
+                .Select(g => new OrderLineItem
+                {
+                    Product = g.Key,
+                    Units = g.Select(l => l.ProductId).Count(),
+                    Cost = g.Key.Price * g.Select(l => l.ProductId).Count()
+                }).ToList();
+
             if (order == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+            return View(model);
         }
 
         // GET: Orders/Create
@@ -137,6 +205,7 @@ namespace Bangazon.Controllers
                 try
                 {
                      order.User = user;
+                    order.DateCompleted = DateTime.Now;
                     _context.Update(order);
                     await _context.SaveChangesAsync();
                 }

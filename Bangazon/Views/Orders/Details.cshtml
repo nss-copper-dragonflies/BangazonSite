@@ -1,42 +1,66 @@
-﻿@model Bangazon.Models.Order
+﻿@model Bangazon.Models.OrderViewModels.OrderDetailViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Order</h1>
 
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Order.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.User)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Order.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Order.User.FirstName)
+            </td>
+        </tr>
+    </tbody>
+    <thead>
+        <th>
+            @Html.DisplayNameFor(model => model.LineItems.First().Product.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LineItems.First().Units)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LineItems.First().Cost)
+        </th>
+    </thead>
+    <tbody>
+        
+        @foreach (var item in Model.LineItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Product.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Units)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Cost)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
 <div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateCompleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateCompleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PaymentType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PaymentType.AccountNumber)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.OrderId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Order.OrderId">Complete Order</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
