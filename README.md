@@ -56,5 +56,4 @@ If a user is viewing the list of Products, they will be able to see the product 
 If a user wishes to add a product to their order from the product list or product details views, they may choose the "Add to Order" allowance. 
 
 ### Product Types
-Any visitor to the site is able to view a list of Product Categories via the Product Categories link. When the visitor clicks on the Categories link, they are directed to a view of all product categories, the number of products within each category and the first 3 products within that category.
-
+Any visitor to the site is able to view a list of Product Categories via the Product Categories link. When the visitor clicks on the Categories link, they are directed to a view of all product categories, the number of products within each category and the first 3 products within that category. The user can then click on that product category title and will be re-directed to a view that contains all of the products that are within that category with links to the product's details. 
